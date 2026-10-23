@@ -1,0 +1,16 @@
+{
+  "name": "withings-sync",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Background sync of Withings weight and blood pressure to Garmin Connect, adding only what's missing",
+  "scripts": {
+    "sync": "./sync.sh",
+    "preview": "node sync.mjs preview",
+    "status": "node sync.mjs status"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@markw65/fit-file-writer": "0.1.7",
+    "garmin-auth": "0.8.1"
+  }
+}
