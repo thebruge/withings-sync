@@ -70,6 +70,7 @@ or `--all`.
 | `data/withings_tokens.json` | Withings sign-in (git-ignored, owner-only) |
 | `data/ledger.json` | What was uploaded and when |
 | `data/status.json` | Outcome of the last sync, read by garmin-dashboard for its warnings |
+| `data/blood_pressure.json` | Every Withings blood pressure reading, for garmin-dashboard's chart (Garmin's Personal API has none) |
 
 ## Privacy
 

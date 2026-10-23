@@ -28,6 +28,7 @@ const DATA = join(ROOT, "data");
 const TOKENS = join(DATA, "withings_tokens.json");
 const LEDGER = join(DATA, "ledger.json");
 const STATUS = join(DATA, "status.json");    // read by garmin-dashboard for its warning banner
+const BP_FILE = join(DATA, "blood_pressure.json"); // read by garmin-dashboard for its chart
 
 const WITHINGS_API = "https://wbsapi.withings.net";
 const AUTHORIZE_URL = "https://account.withings.com/oauth2_user/authorize2";
@@ -218,6 +219,22 @@ async function upload(client, fit) {
   return d.uploadId ?? null;
 }
 
+// ---------- blood pressure for the dashboard ----------
+// Garmin's read-only Personal API has no blood pressure, so garmin-dashboard reads
+// it from here: every Withings reading, as [unix seconds, systolic, diastolic, pulse].
+// The first run fetches the full history; later runs merge in what plan() fetched.
+async function saveBloodPressure(readings) {
+  let store = readJson(BP_FILE, null);
+  if (!store) {
+    store = {};
+    readings = await withingsReadings(0);
+  }
+  for (const r of readings)
+    if (r.sys && r.dia) store[r.ts] = [r.ts, Math.round(r.sys), Math.round(r.dia), r.pulse ? Math.round(r.pulse) : null];
+  writeJson(BP_FILE, store);
+  return Object.keys(store).length;
+}
+
 // ---------- the plan ----------
 function sinceFromArgs() {
   if (args.includes("--all")) return 0;
@@ -325,6 +342,8 @@ async function sync() {
   if (w) parts.push(`${w} weigh-in${w > 1 ? "s" : ""}`);
   if (b) parts.push(`${b} blood pressure`);
   if (failed) parts.push(`${failed} failed`);
+  try { await saveBloodPressure(p.readings); }
+  catch (e) { console.log(`Couldn't save blood pressure for the dashboard: ${e.message}`); }
   writeStatus({ ok: !failed, needsLogin: false, weight: w, bp: b, failed,
                 message: failed ? `${failed} reading(s) failed to upload; see withings-sync/data/sync.log` : null });
   console.log(`Withings → Garmin: ${parts.length ? parts.join(", ") : "nothing new"}`);

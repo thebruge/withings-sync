@@ -16,3 +16,5 @@ All notable changes to this project are documented here. The format follows
   muscle mass, and blood pressure with pulse; uploaded with hevy-sync's Garmin
   sign-in.
 - `data/status.json` for garmin-dashboard's warning banner.
+- `data/blood_pressure.json`: every Withings blood pressure reading (full
+  history on the first run), for garmin-dashboard's chart.
