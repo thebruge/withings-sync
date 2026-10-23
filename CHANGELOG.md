@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-23
+
 ### Fixed
 - Temporary errors (network trouble, HTTP 429/5xx, including Garmin uploads)
   get up to 3 retries after 5, 15 and 30 seconds before a sync counts as failed, and the error names the cause and host instead of just "fetch failed".
@@ -22,3 +24,6 @@ All notable changes to this project are documented here. The format follows
 - `data/status.json` for garmin-dashboard's warning banner.
 - `data/blood_pressure.json`: every Withings blood pressure reading (full
   history on the first run), for garmin-dashboard's chart.
+
+[Unreleased]: https://github.com/thebruge/withings-sync/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/thebruge/withings-sync/releases/tag/v0.1.0
