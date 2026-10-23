@@ -7,8 +7,8 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
-- A network error gets one retry after 30 seconds before it counts as a failed
-  sync, and the error names the cause and host instead of just "fetch failed".
+- Temporary errors (network trouble, HTTP 429/5xx, including Garmin uploads)
+  get up to 3 retries after 5, 15 and 30 seconds before a sync counts as failed, and the error names the cause and host instead of just "fetch failed".
 
 ### Added
 - `sync.mjs` with `login`, `check`, `preview`, `sync` and `status`.
