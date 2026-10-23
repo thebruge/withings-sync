@@ -298,6 +298,12 @@ async function preview() {
 }
 
 async function sync() {
+  // Not set up yet (no app credentials and no sign-in): skip quietly, so the
+  // dashboard's refresh carries on and shows no warning.
+  if (!existsSync(TOKENS) && !(ENV.WITHINGS_CLIENT_ID && ENV.WITHINGS_CLIENT_SECRET)) {
+    console.log("Withings → Garmin: not set up yet");
+    return;
+  }
   const p = await plan();
   let w = 0, b = 0, failed = 0;
   for (const t of p.todo) {
