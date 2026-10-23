@@ -364,5 +364,7 @@ if (!commands[cmd]) fail(`Unknown command "${cmd}". Use: login, check, preview, 
 try {
   await commands[cmd]();
 } catch (e) {
+  const c = e.cause;
+  if (c) e.message += ` (${c.code || c.message || c}${c.hostname ? ` ${c.hostname}` : ""})`;
   fail(`${cmd} failed: ${e.message}`, /401|auth|sign.?in/i.test(e.message) ? 2 : 1);
 }

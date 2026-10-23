@@ -6,6 +6,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- A network error gets one retry after 30 seconds before it counts as a failed
+  sync, and the error names the cause and host instead of just "fetch failed".
+
 ### Added
 - `sync.mjs` with `login`, `check`, `preview`, `sync` and `status`.
 - Withings sign-in on the server: paste-the-address flow using the app's
