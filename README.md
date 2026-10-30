@@ -61,6 +61,11 @@ or `--all`.
    it for 30 seconds**, so paste straight away.
 4. `preview --all` to see what's missing, then `sync --all` once to fill gaps.
 
+**If Withings rejects the client ID or secret**, the secret was renewed on
+developer.withings.com (signing in again won't fix it). Put the current secret
+in `.env.local` here, run `server/deploy.sh --data withings-sync` again, delete
+`.env.local`, then sign in.
+
 ## Files
 
 | File | What it does |

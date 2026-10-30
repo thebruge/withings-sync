@@ -91,6 +91,10 @@ async function tokenRequest(params) {
     body: new URLSearchParams({ action: "requesttoken", ...params }),
   });
   const j = await res.json();
+  // Withings checks the app's secret before the code or refresh token, so this means the secret is wrong.
+  if (j.status !== 0 && /client id\/secret/i.test(j.error || ""))
+    fail(`Withings rejected this app's client ID or secret (${j.error}). The secret was probably renewed on ` +
+         `developer.withings.com: put the current one in ${join(ROOT, ".env.local")}. Signing in again won't help until then.`);
   if (j.status !== 0) throw new Error(`Withings sign-in refused (status ${j.status}${j.error ? `: ${j.error}` : ""})`);
   const b = j.body;
   // Withings rotates the refresh token on every refresh: save the new one at once.
