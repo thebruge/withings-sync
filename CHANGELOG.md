@@ -6,6 +6,14 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-30
+
+### Fixed
+- When Withings rejects the app's client ID or secret, the error says the secret
+  was probably renewed on developer.withings.com and needs updating in
+  `.env.local`, instead of asking you to sign in again (which can't fix it). The
+  README has the steps.
+
 ## [0.1.0] - 2026-10-23
 
 ### Fixed
@@ -25,5 +33,6 @@ All notable changes to this project are documented here. The format follows
 - `data/blood_pressure.json`: every Withings blood pressure reading (full
   history on the first run), for garmin-dashboard's chart.
 
-[Unreleased]: https://github.com/thebruge/withings-sync/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/thebruge/withings-sync/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/thebruge/withings-sync/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/thebruge/withings-sync/releases/tag/v0.1.0
