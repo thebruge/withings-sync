@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-02
+
 ### Fixed
 - A network blip or Garmin outage while checking the Garmin sign-in no longer
   says the sign-in needs renewing. garmin-auth reports every failed check as
@@ -40,6 +42,7 @@ All notable changes to this project are documented here. The format follows
 - `data/blood_pressure.json`: every Withings blood pressure reading (full
   history on the first run), for garmin-dashboard's chart.
 
-[Unreleased]: https://github.com/thebruge/withings-sync/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/thebruge/withings-sync/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/thebruge/withings-sync/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/thebruge/withings-sync/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/thebruge/withings-sync/releases/tag/v0.1.0
