@@ -163,9 +163,14 @@ async function withingsReadings(since) {
 async function garminClient() {
   const dir = resolve(ROOT, ENV.GARMIN_TOKENS_DIR || "../hevy-sync/data/garmin");
   if (!existsSync(dir)) fail(`No Garmin sign-in at ${dir}. Sign in with hevy-sync (node sync.mjs login there).`, 2);
+  const store = new FileTokenStore(dir);
   try {
-    return await new GarminAuth({ store: new FileTokenStore(dir) }).client();
+    return await new GarminAuth({ store }).client();
   } catch (e) {
+    // garmin-auth says "needs MFA / fresh SSO" for any failed token check, network
+    // trouble included, but deletes the tokens only when Garmin rejects them.
+    // Tokens still saved means a temporary error, which sync.sh retries.
+    if (await store.load()) fail("Garmin unreachable while checking the sign-in (temporary; the saved sign-in is kept).");
     fail(`Garmin sign-in needs renewing (${e.message}). Sign in again with hevy-sync.`, 2);
   }
 }

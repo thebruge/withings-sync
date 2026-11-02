@@ -6,6 +6,13 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- A network blip or Garmin outage while checking the Garmin sign-in no longer
+  says the sign-in needs renewing. garmin-auth reports every failed check as
+  "needs MFA / fresh SSO" but deletes the tokens only when Garmin rejects them,
+  so with tokens still saved the sync now fails as "Garmin unreachable" and
+  `sync.sh` retries it.
+
 ## [0.1.1] - 2026-10-30
 
 ### Fixed
