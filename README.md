@@ -23,7 +23,7 @@ have**. No server and no database: it runs, syncs, and exits.
 On the [garmin-dashboard](https://github.com/thebruge/garmin-dashboard) server
 (CT 208) at `/opt/withings-sync`, deployed by garmin-dashboard's
 `server/deploy.sh`. Every refresh there runs it after the Hevy sync and before
-the Garmin pull (last 30 days): at 6 am, and when you press Refresh or use the
+the Garmin pull (last 30 days): at 7:00 and 19:00, and when you press Refresh or use the
 Raycast commands.
 
 Run it in **one place only**: Withings replaces the refresh token on every
