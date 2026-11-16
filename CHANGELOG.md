@@ -6,6 +6,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- MIT license.
+
 ## [0.1.2] - 2026-11-02
 
 ### Fixed

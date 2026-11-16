@@ -80,3 +80,7 @@ in `.env.local` here, run `server/deploy.sh --data withings-sync` again, delete
 ## Privacy
 
 `.env.local` and `data/` are git-ignored and live on CT 208 only.
+
+## License
+
+[MIT](LICENSE)
